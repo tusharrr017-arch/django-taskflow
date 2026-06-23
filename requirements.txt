@@ -1,0 +1,14 @@
+# TaskManagement backend dependencies
+# Install: pip install -r requirements.txt
+
+asgiref==3.11.1
+Django==6.0.5
+django-cors-headers==4.9.0
+djangorestframework==3.17.1
+djangorestframework-simplejwt==5.5.1
+PyJWT==2.13.0
+sqlparse==0.5.5
+tzdata==2026.2
+
+# Optional: uncomment when migrating to PostgreSQL
+# psycopg2-binary==2.9.12
