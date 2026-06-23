@@ -10,24 +10,45 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
+
+
+def env_bool(name, default='False'):
+    return os.getenv(name, default).lower() in ('true', '1', 'yes')
+
+
+def env_list(name, default=''):
+    return [
+        item.strip()
+        for item in os.getenv(name, default).split(',')
+        if item.strip()
+    ]
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-dsn&*-f#657d5q=j@bi=h6693wi+-(hc%2pxr4luss2+$k$8g-'
+SECRET_KEY = os.getenv(
+    'SECRET_KEY',
+    'django-insecure-dev-only-change-before-production',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool('DEBUG', 'True')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1')
 
-
+print("DEBUG =", DEBUG)
+print("ALLOWED_HOSTS =", ALLOWED_HOSTS)
 # Application definition
 
 INSTALLED_APPS = [
@@ -126,4 +147,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = env_list(
+    'CORS_ALLOWED_ORIGINS',
+    'http://localhost:5173,http://127.0.0.1:5173',
+)
