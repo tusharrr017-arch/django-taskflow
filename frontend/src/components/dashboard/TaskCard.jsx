@@ -15,7 +15,7 @@ export function TaskCard({
   const isCompleted = task.completed;
 
   return (
-    <Card className="transition-shadow hover:shadow-md">
+    <Card className="transition-all duration-300 hover:shadow-md dark:hover:shadow-lg dark:shadow-black/20">
       <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 pb-3">
         <div className="space-y-1">
           <h3 className="text-base font-semibold leading-snug text-foreground">

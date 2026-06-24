@@ -13,15 +13,15 @@ const statConfig = [
     key: "completed",
     label: "Completed",
     icon: CheckCircle2,
-    accent: "text-emerald-600",
-    bg: "bg-emerald-50",
+    accent: "text-emerald-600 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-950/50",
   },
   {
     key: "pending",
     label: "Pending",
     icon: CircleDashed,
-    accent: "text-amber-600",
-    bg: "bg-amber-50",
+    accent: "text-amber-600 dark:text-amber-400",
+    bg: "bg-amber-50 dark:bg-amber-950/50",
   },
 ];
 

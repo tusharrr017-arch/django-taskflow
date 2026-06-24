@@ -1,4 +1,5 @@
 import { LayoutDashboard, LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
@@ -23,6 +24,7 @@ export function DashboardHeader() {
       </div>
 
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         <Badge variant="secondary" className="capitalize">
           {user?.role || "employee"}
         </Badge>

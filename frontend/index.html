@@ -11,6 +11,24 @@
       rel="stylesheet"
     />
     <title>TaskFlow — Task Management</title>
+    <script>
+      (function () {
+        try {
+          var key = "taskflow-theme";
+          var stored = localStorage.getItem(key);
+          var theme = stored;
+
+          if (theme !== "dark" && theme !== "light") {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          }
+
+          document.documentElement.classList.add(theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
