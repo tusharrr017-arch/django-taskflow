@@ -73,14 +73,23 @@ PostgreSQL (Neon)
 
 ## Screenshots
 
-Add screenshots for:
-
 * Login Page
+<img width="1501" height="883" alt="image" src="https://github.com/user-attachments/assets/377f4ba6-9712-4a74-a1c4-c58357cb0cc3" />
+
 * Dashboard
+<img width="1521" height="901" alt="image" src="https://github.com/user-attachments/assets/d8fa34fe-8ae8-4d4b-b57d-412408ee54b3" />
+
 * Admin View
+<img width="1521" height="901" alt="image" src="https://github.com/user-attachments/assets/22a1166e-5371-4076-9d12-87985f455d05" />
+
 * Employee View
+<img width="1438" height="706" alt="image" src="https://github.com/user-attachments/assets/cb06491f-3db3-4c61-aa34-93f76d9fbdc5" />
+
 * Task Creation
+<img width="1377" height="868" alt="image" src="https://github.com/user-attachments/assets/d5b361bc-d767-49cc-9c33-208b041f2624" />
+
 * Task Management
+<img width="1458" height="766" alt="image" src="https://github.com/user-attachments/assets/d2b40e0c-285d-4081-81a6-126f3fea643c" />
 
 ## Local Setup
 
