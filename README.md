@@ -1,244 +1,156 @@
 # TaskFlow
 
-A full-stack, role-based task management application built with Django REST Framework and React.
+A full-stack task management application built with React, Django REST Framework, JWT Authentication, and PostgreSQL.
 
-- Admins create, assign, edit, and delete tasks
-- Employees view and complete tasks assigned to them
-- Portfolio-ready SaaS-style dashboard with JWT authentication and automatic token refresh
+##  Live Demo
+
+Frontend: https://django-taskflow.vercel.app
+
+Backend API: https://django-taskflow.onrender.com
 
 ## Features
 
-- **JWT authentication** — login, signup, and automatic access token refresh
-- **Role-based access control** — Admin and Employee roles with server-enforced permissions
-- **Task management** — create, read, update, delete, and mark tasks complete
-- **Task assignment** — admins assign tasks to team members
-- **Dashboard metrics** — total, completed, and pending task counts
-- **Search and filters** — search by title or description; filter by status; sort by date or completion
-- **User registration** — public signup creates Employee accounts only
-- **Admin management** — admin users are created via Django Admin
+* Secure JWT Authentication
+* Role-Based Access Control (Admin & Employee)
+* Create, Edit, Delete Tasks
+* Assign Tasks to Employees
+* Mark Tasks as Completed
+* Search and Sort Tasks
+* Protected Routes
+* Automatic Token Refresh
+* Responsive Dashboard UI
+* PostgreSQL Database Integration
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Backend | Django 6, Django REST Framework |
-| Authentication | djangorestframework-simplejwt (JWT) |
-| Database | SQLite (development) |
-| Frontend | React 19, Vite 8 |
-| Routing | React Router 7 |
-| Styling | Tailwind CSS 4, shadcn/ui-style components |
-| Icons | Lucide React |
-| HTTP | Axios |
+### Frontend
 
-## Architecture
-
-### Project structure
-
-```
-TaskManagement/
-├── accounts/          # Custom User model, signup, /me/, user list
-├── tasks/             # Task model and TaskViewSet (role-scoped CRUD)
-├── config/            # Django settings, URLs, WSGI
-├── frontend/          # React SPA (Vite)
-├── manage.py
-└── requirements.txt
-```
+* React
+* Vite
+* Tailwind CSS
+* Axios
+* React Router
 
 ### Backend
 
-- REST API with JWT authentication
-- Role checks enforced in views via `PermissionDenied`
-- Admin-only create/delete and user listing
-- Employee-scoped task access
+* Django
+* Django REST Framework
+* Simple JWT
 
-### Frontend
+### Database
 
-- React SPA with `AuthContext` and protected routes
-- Service layer (`authService`, `taskService`, `userService`)
-- Composable dashboard components
+* PostgreSQL (Neon)
 
-### Authentication flow
+### Deployment
 
-1. User logs in via `POST /api/token/`
-2. API returns JWT access and refresh tokens
-3. Frontend fetches role from `GET /api/accounts/me/`
-4. Authenticated requests send `Authorization: Bearer <access_token>`
-5. On `401`, the client refreshes the token and retries the request
+* Vercel (Frontend)
+* Render (Backend)
 
-## Installation
+## Architecture
 
-### Prerequisites
+Frontend (Vercel)
+↓
+React + Axios
+↓
+Django REST API (Render)
+↓
+PostgreSQL (Neon)
 
-- Python 3.11+
-- Node.js 18+
-- npm
+## User Roles
 
-### Clone the repository
+### Admin
+
+* Create Tasks
+* Edit Tasks
+* Delete Tasks
+* Assign Tasks
+* View All Tasks
+
+### Employee
+
+* View Assigned Tasks
+* Mark Tasks as Completed
+
+## Screenshots
+
+Add screenshots for:
+
+* Login Page
+* Dashboard
+* Admin View
+* Employee View
+* Task Creation
+* Task Management
+
+## Local Setup
+
+### Clone Repository
 
 ```bash
-git clone <repository-url>
-cd TaskManagement
+git clone https://github.com/tusharrr017-arch/django-taskflow.git
+cd django-taskflow
 ```
 
-## Backend Setup
-
-### Create and activate a virtual environment
-
-**Windows:**
+### Backend Setup
 
 ```bash
 python -m venv venv
+
+# Windows
 venv\Scripts\activate
-```
 
-**macOS / Linux:**
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-### Install dependencies and run migrations
-
-```bash
 pip install -r requirements.txt
+
 python manage.py migrate
-python manage.py createsuperuser
+
 python manage.py runserver
 ```
 
-The API runs at:
-
-- http://127.0.0.1:8000
-
-### Backend environment variables
-
-Copy `.env.example` to `.env` in the project root:
-
-```bash
-cp .env.example .env
-```
-
-Example `.env` values:
-
-```env
-SECRET_KEY=your-secret-key
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
-```
-
-> **Note:** `config/settings.py` currently uses hardcoded development values. Wire `.env` into settings before production deployment.
-
-## Frontend Setup
+### Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
-cp .env.example .env
+
 npm run dev
 ```
 
-The app runs at:
+### Environment Variables
 
-- http://localhost:5173
+Backend:
 
-### Frontend environment variables
+```env
+SECRET_KEY=your_secret_key
+DEBUG=True
+DATABASE_URL=your_database_url
+```
 
-Copy `frontend/.env.example` to `frontend/.env`:
+Frontend:
 
 ```env
 VITE_API_URL=http://127.0.0.1:8000
 ```
 
-### Useful frontend commands
+## Project Highlights
 
-```bash
-npm run lint
-npm run build
-```
+* Built a role-based task management system using React and Django REST Framework.
+* Implemented JWT Authentication with automatic token refresh.
+* Integrated PostgreSQL using Neon.
+* Deployed frontend on Vercel and backend on Render.
+* Designed reusable React components and protected routes.
+* Implemented task assignment, editing, deletion, and completion workflows.
 
-## API Endpoints
+## Author
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| POST | `/api/token/` | Obtain JWT access and refresh tokens | Public |
-| POST | `/api/token/refresh/` | Refresh access token | Public |
-| POST | `/api/accounts/signup/` | Register a new user (employee only) | Public |
-| GET | `/api/accounts/me/` | Get current user profile | Authenticated |
-| GET | `/api/accounts/users/` | List all users | Admin only |
-| GET | `/api/tasks/` | List tasks | Authenticated |
-| POST | `/api/tasks/` | Create a task | Admin only |
-| GET | `/api/tasks/{id}/` | Retrieve a task | Authenticated |
-| PATCH | `/api/tasks/{id}/` | Update a task | Authenticated |
-| DELETE | `/api/tasks/{id}/` | Delete a task | Admin only |
+Tushar Lakhani
 
-## Demo Accounts
+GitHub:
+https://github.com/tusharrr017-arch
 
-The login page displays demo credentials for recruiter review.
+LinkedIn:
+https://www.linkedin.com/in/tushar-lakhani-a254ab3a0/
 
-Create matching users in Django Admin or the Django shell if they do not already exist.
+## Live Project
 
-| Role | Username | Password |
-|------|----------|----------|
-| Admin | `Admin` | `Admin@123` |
-| Employee | `employee` | `employee123` |
-
-### Notes
-
-- Admin users must be created through Django Admin at `/admin/`
-- Public signup always creates Employee accounts
-- Demo credentials are intended for local development and portfolio demos only
-
-## Screenshots
-
-Add screenshots here for portfolio presentation.
-
-| Login | Dashboard (Admin) | Dashboard (Employee) |
-|-------|-------------------|----------------------|
-| `screenshot-login.png` | `screenshot-admin.png` | `screenshot-employee.png` |
-
-## Deployment
-
-This project is ready for GitHub and local development. The items below should be addressed before production deployment.
-
-### P0 — Must fix before deployment
-
-- Move `SECRET_KEY`, `DEBUG`, and `ALLOWED_HOSTS` into environment variables
-- Rotate the development `SECRET_KEY` if it was ever committed publicly
-- Set `DEBUG=False` in production
-- Restrict CORS to trusted frontend origins
-- Replace SQLite with PostgreSQL for production
-- Serve the frontend over HTTPS
-- Review JWT storage strategy (`localStorage` is vulnerable to XSS)
-
-### P1 — Recommended
-
-- Add CI for linting, frontend build, and backend tests
-- Remove or environment-gate demo credentials on the login page
-- Use Gunicorn/Uvicorn behind a reverse proxy
-- Add rate limiting on login and signup endpoints
-- Enable structured logging and error monitoring
-
-### P2 — Optional
-
-- Docker and `docker-compose.yml`
-- OpenAPI / Swagger documentation
-- API pagination and server-side filtering
-- Token blacklist and server-side logout
-
-### PostgreSQL migration (summary)
-
-1. Install `psycopg2-binary`
-2. Provision a PostgreSQL database
-3. Update `DATABASES` in Django settings
-4. Run `python manage.py migrate`
-5. Migrate existing SQLite data if needed
-6. Recreate superuser and demo accounts on the new database
-
-### Development commands
-
-```bash
-python manage.py test
-cd frontend && npm run lint
-cd frontend && npm run build
-```
+https://django-taskflow.vercel.app
